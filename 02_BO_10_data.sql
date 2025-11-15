@@ -188,26 +188,26 @@ commit;
 
 --EMPRUNTS
 -- PROMPT Insertion des emprunts
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (1, 1, TO_DATE('2020-12-01', 'YYYY-MM-DD'), TO_DATE('2020-12-04', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (2, 1, TO_DATE('2020-12-01', 'YYYY-MM-DD'), TO_DATE('2020-12-03', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (3, 1, TO_DATE('2020-12-12', 'YYYY-MM-DD'), TO_DATE('2020-12-20', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (4, 1, TO_DATE('2020-12-20', 'YYYY-MM-DD'), TO_DATE('2021-03-04', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (5, 2, TO_DATE('2021-01-07', 'YYYY-MM-DD'), TO_DATE('2021-01-17', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (6, 2, TO_DATE('2021-02-18', 'YYYY-MM-DD'), TO_DATE('2021-02-22', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (7, 2, TO_DATE('2021-02-24', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (8, 2, TO_DATE('2021-03-09', 'YYYY-MM-DD'), TO_DATE('2021-04-09', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (9, 3, TO_DATE('2021-04-01', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (10, 3, TO_DATE('2021-04-02', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (11, 3, TO_DATE('2021-04-03', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (12, 3, TO_DATE('2021-04-04', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (13, 4, TO_DATE('2023-10-01', 'YYYY-MM-DD'), TO_DATE('2023-10-04', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (14, 4, TO_DATE('2023-10-02', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (15, 4, TO_DATE('2023-10-03', 'YYYY-MM-DD'), null);
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (16, 4, TO_DATE('2023-10-04', 'YYYY-MM-DD'), TO_DATE('2023-10-14', 'YYYY-MM-DD'));
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (17, 5, TO_DATE('2023-10-01', 'YYYY-MM-DD'), TO_DATE('2023-10-02', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (1, 1, TO_DATE('2020-12-01', 'YYYY-MM-DD'), TO_DATE('2020-12-04', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (2, 1, TO_DATE('2020-12-01', 'YYYY-MM-DD'), TO_DATE('2020-12-03', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (3, 1, TO_DATE('2020-12-12', 'YYYY-MM-DD'), TO_DATE('2020-12-20', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (4, 1, TO_DATE('2020-12-20', 'YYYY-MM-DD'), TO_DATE('2021-03-04', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (5, 2, TO_DATE('2021-01-07', 'YYYY-MM-DD'), TO_DATE('2021-01-17', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (6, 2, TO_DATE('2021-02-18', 'YYYY-MM-DD'), TO_DATE('2021-02-22', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (7, 2, TO_DATE('2021-02-24', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (8, 2, TO_DATE('2021-03-09', 'YYYY-MM-DD'), TO_DATE('2021-04-09', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (9, 3, TO_DATE('2021-04-01', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (10, 3, TO_DATE('2021-04-02', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (11, 3, TO_DATE('2021-04-03', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (12, 3, TO_DATE('2021-04-04', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (13, 4, TO_DATE('2023-10-01', 'YYYY-MM-DD'), TO_DATE('2023-10-04', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (14, 4, TO_DATE('2023-10-02', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (15, 4, TO_DATE('2023-10-03', 'YYYY-MM-DD'), null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (16, 4, TO_DATE('2023-10-04', 'YYYY-MM-DD'), TO_DATE('2023-10-14', 'YYYY-MM-DD'));
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (17, 5, TO_DATE('2023-10-01', 'YYYY-MM-DD'), TO_DATE('2023-10-02', 'YYYY-MM-DD'));
 
 -- Livre sans retard
-insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (18, 6, sysdate - 1, null);
+insert into bo.emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (18, 6, sysdate - 1, null);
 
 commit;
 
