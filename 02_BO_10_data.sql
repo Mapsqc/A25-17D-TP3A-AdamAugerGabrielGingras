@@ -1,5 +1,5 @@
 --MEMBRES
-PROMPT Insertion des membres
+-- PROMPT Insertion des membres
 Insert into BO.MEMBRES (CODE,PRENOM,NOM,GENRE,DATE_NAISSANCE,COURRIEL,ADRESSE_LIGNE1,ADRESSE_LIGNE2,VILLE,PROVINCE,CODE_POSTAL,PAYS,TELEPHONE,DATE_DEBUT_MEMBRE,STATUT_MEMBRE,THEME_PREFERE) values ('BOQC' || lpad(bo.code_membre_seq.nextval, 8, '0'),'Baxie','Bernadzki','M',to_date('1998-04-09','YYYY-MM-DD'),'bbernadzki0@gravatar.com','8 International Place','PO Box 7265','Atlanta','Georgia','30343','États-Unis','404-703-4208',to_date('2020-11-01','YYYY-MM-DD'),'actif','Mystère');
 Insert into BO.MEMBRES (CODE,PRENOM,NOM,GENRE,DATE_NAISSANCE,COURRIEL,ADRESSE_LIGNE1,ADRESSE_LIGNE2,VILLE,PROVINCE,CODE_POSTAL,PAYS,TELEPHONE,DATE_DEBUT_MEMBRE,STATUT_MEMBRE,THEME_PREFERE) values ('BOQC' || lpad(bo.code_membre_seq.nextval, 8, '0'),'Roscoe','Ruppel','M',to_date('1982-08-18','YYYY-MM-DD'),'rruppel1@ucsd.edu','011 Delaware Circle','PO Box 69837','Hartford','Connecticut','06105','États-Unis','860-411-5941',to_date('2020-06-21','YYYY-MM-DD'),'actif','Non-fiction');
 Insert into BO.MEMBRES (CODE,PRENOM,NOM,GENRE,DATE_NAISSANCE,COURRIEL,ADRESSE_LIGNE1,ADRESSE_LIGNE2,VILLE,PROVINCE,CODE_POSTAL,PAYS,TELEPHONE,DATE_DEBUT_MEMBRE,STATUT_MEMBRE,THEME_PREFERE) values ('BOQC' || lpad(bo.code_membre_seq.nextval, 8, '0'),'Lydie','Zahor','F',to_date('1983-03-08','YYYY-MM-DD'),'lzahor2@google.ru','2 Elmside Way','Suite 79','Washington','District of Columbia','20210','États-Unis','202-345-2733',to_date('2020-01-27','YYYY-MM-DD'),'suspendu','Romance');
@@ -53,7 +53,7 @@ Insert into BO.MEMBRES (CODE,PRENOM,NOM,GENRE,DATE_NAISSANCE,COURRIEL,ADRESSE_LI
 COMMIT;
 
 --SECTIONS
-PROMPT Insertion des sections
+-- PROMPT Insertion des sections
 insert into bo.Sections (id, nom, description) VALUES (000, 'Périodiques', 'Revues et publications périodiques');
 insert into bo.Sections (id, nom, description) VALUES (100, 'Philosophie et psychologie', 'Livres sur la philosophie et la psychologie');
 insert into bo.Sections (id, nom, description) VALUES (110, 'Métaphysique', 'Livres sur la métaphysique et la nature de la réalité');
@@ -77,7 +77,7 @@ insert into bo.Sections (id, nom, description) VALUES (910, 'Géographie et voya
 commit;
 
 --GENRES
-PROMPT Insertion des genres de livres
+-- PROMPT Insertion des genres de livres
 insert into bo.GENRES (NOM_GENRE) values ('Roman');
 insert into bo.GENRES (NOM_GENRE) values ('Conte');
 insert into bo.GENRES (NOM_GENRE) values ('Philosophie');
@@ -97,7 +97,7 @@ insert into bo.GENRES (NOM_GENRE) values ('Religion');
 commit;
 
 --AUTEURS
-PROMPT Insertion des auteurs
+-- PROMPT Insertion des auteurs
 insert into bo.Auteurs (nom_auteur) VALUES ('Albert Camus');
 insert into bo.Auteurs (nom_auteur) VALUES ('Antoine de Saint-Exupéry');
 insert into bo.Auteurs (nom_auteur) VALUES ('John Doe');
@@ -126,7 +126,7 @@ insert into bo.Auteurs (nom_auteur) VALUES ('Harper Lee');
 commit;
 
 --LIVRES
-PROMPT Insertion des livres
+-- PROMPT Insertion des livres
 insert into bo.livres ( sections_id, auteurs_id, genres_id, isbn, titre, maison_edition, annee_publication, langage, prix) values ( 200, 22, 15, '9789375522032', 'Un Voyage Inattendu', 'Quinu', 1935, 'Dari', 369.91);
 insert into bo.livres ( sections_id, auteurs_id, genres_id, isbn, titre, maison_edition, annee_publication, langage, prix) values ( 310, 2, 10, '9787027627370', 'Le Secret Oublié', 'Centidel', 1968, 'Catalan', 156.13);
 insert into bo.livres ( sections_id, auteurs_id, genres_id, isbn, titre, maison_edition, annee_publication, langage, prix) values ( 410, 6, 3, '9788579275121', 'Au-delé des étoiles', 'Lazz', 1939, 'Aymara', 446.73);
@@ -187,7 +187,7 @@ insert into bo.livres ( sections_id, auteurs_id, genres_id, isbn, titre, maison_
 commit;
 
 --EMPRUNTS
-PROMPT Insertion des emprunts
+-- PROMPT Insertion des emprunts
 insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (1, 1, TO_DATE('2020-12-01', 'YYYY-MM-DD'), TO_DATE('2020-12-04', 'YYYY-MM-DD'));
 insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (2, 1, TO_DATE('2020-12-01', 'YYYY-MM-DD'), TO_DATE('2020-12-03', 'YYYY-MM-DD'));
 insert into emprunts (LIVRES_ID , MEMBRES_ID , date_emprunt, DATE_RETOUR) values (3, 1, TO_DATE('2020-12-12', 'YYYY-MM-DD'), TO_DATE('2020-12-20', 'YYYY-MM-DD'));
