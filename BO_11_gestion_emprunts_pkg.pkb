@@ -29,14 +29,15 @@ END retourner_livre_prc;
 
 -- Fonction E. rechercher_livre_fct
 
-FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN livre IS rec_livre pkg_tp3.T_INFO_LIVRE;
-
+FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN T_INFO_LIVRE IS rec_livre T_INFO_LIVRE;
 BEGIN
     -- Recherche le livre avec l'id specifie
-    SELECT livres_id, sections_id, auteurs_id, genres_id, isbn, titre, maison_edition, annee_publication, langage, prix 
+    SELECT l.livres_id, l.titre, l.isbn, l.auteurs_id, l.maison_edition, l.annee_publication, l.langage, s.nom AS nom_section, g.nom_genre AS nom_genre
     INTO rec_livre
-    FROM bo.livres
-    WHERE livres_id = io_id_livre;
+    FROM bo.livres l
+    INNER JOIN bo.sections s ON s.id = l.sections_id
+    INNER JOIN bo.genres g ON g.genres_id = l.genres_id
+    WHERE l.livres_id = io_id_livre;
 
     -- retourner le livre trouve
     RETURN rec_livre;
@@ -60,7 +61,7 @@ END rechercher_livre_fct;
 
 -- Fonction F. archiver_prc
 
-PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100); chaine_sql VARCHAR2(100); mois_format VARCHAR2(2);
+PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100); chaine_sql VARCHAR2(500); mois_format VARCHAR2(2);
 
 BEGIN
     -- Si le mois est plus petit que 10 ajoute un 0 devant

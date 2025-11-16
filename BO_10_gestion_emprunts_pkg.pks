@@ -17,7 +17,7 @@ CREATE OR REPLACE PACKAGE GESTION_EMPRUNTS_PKG IS
     PROCEDURE retourner_livre_prc (i_id_membre IN NUMBER, i_id_livre IN NUMBER);
 
     -- Fonction E. rechercher_livre_fct
-    FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN livre;
+    FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN T_INFO_LIVRE;
 
     -- Fonction F. archiver_prc
     PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois IN NUMBER DEFAULT 12);
