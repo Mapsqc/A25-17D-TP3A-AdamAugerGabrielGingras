@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE BODY pkg_tp3 IS 
+CREATE OR REPLACE PACKAGE BODY GESTION_EMPRUNTS_PKG IS 
 
 -- Procédure D. retourner_livre_prc
 PROCEDURE retourner_livre_prc (i_id_membre IN NUMBER, i_id_livre IN NUMBER) IS penalite NUMBER:= 0;
@@ -29,7 +29,7 @@ END retourner_livre_prc;
 
 -- Fonction E. rechercher_livre_fct
 
-FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN livre IS rec_livre pkg_tp3.livre;
+FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN livre IS rec_livre pkg_tp3.T_INFO_LIVRE;
 
 BEGIN
     -- Recherche le livre avec l'id specifie
@@ -85,4 +85,4 @@ EXCEPTION
 
 END archiver_prc;
 
-END pkg_tp3;
+END GESTION_EMPRUNTS_PKG;
