@@ -60,8 +60,7 @@ END rechercher_livre_fct;
 
 -- Fonction F. archiver_prc
 
-PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100),
-chaine_sql VARCHAR2(100), mois_format VARCHAR2(2);
+PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100); chaine_sql VARCHAR2(100); mois_format VARCHAR2(2);
 
 BEGIN
     -- Si le mois est plus petit que 10 ajoute un 0 devant
