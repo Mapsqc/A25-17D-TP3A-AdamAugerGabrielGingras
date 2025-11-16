@@ -99,10 +99,10 @@ BEGIN
     ROLLBACK; -- Pour annuler les modifications de la transaction (retrouver les données d'origine)
 
 
-
     -- RETOUR AVEC AMENDES À PAYER
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 2 : RETOUR AVEC AMENDES À PAYER');
-
+    ID_MEMBRE := 4; -- Membre 4 : Amendes à payer
+    ID_LIVRE := 4; -- Livre 4 : Livre à retourner
 
     rollback;
 END;
@@ -116,12 +116,14 @@ BEGIN
  
     -- LIVRE EXISTANT
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 1 : LIVRE EXISTANT');
-
-
+    ID_LIVRE := 1; -- Livre 1 qui existe
+    REC_INFO_LIVRE := GESTION_EMPRUNTS_PKG.rechercher_livre_fct(ID_LIVRE);
  
 
     -- LIVRE INEXISTANT
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 2 : LIVRE INEXISTANT');
+    ID_LIVRE := 0; -- Livre 0 qui n'existe pas
+    REC_INFO_LIVRE := GESTION_EMPRUNTS_PKG.rechercher_livre_fct(ID_LIVRE);
 
 
 END;
