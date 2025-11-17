@@ -89,11 +89,10 @@ EXCEPTION
 END est_disponible_fct;
 
 -- Procédure D. retourner_livre_prc
-PROCEDURE retourner_livre_prc (i_id_membre IN NUMBER, i_id_livre IN NUMBER) IS penalite NUMBER:= 0;
-
+PROCEDURE retourner_livre_prc (i_id_membre IN NUMBER, i_id_livre IN NUMBER) IS penalite NUMBER:= 0; v_bool BOOLEAN;
 BEGIN
     -- Verifier sil y a des penalites non paye
-    penalite := est_penalites_impayees_fct(i_id_membre);
+    v_bool := est_penalites_impayees_fct(i_id_membre, penalite);
 
     -- SI la penalite est plus grande que 0 alors on l'affiche
     IF penalite > 0 THEN
@@ -137,19 +136,19 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Aucun livre a ete trouve avec le id specifie.');
         -- L'id devient 0 si il n'y a pas de livre trouve
         io_id_livre := 0;
-    RETURN NULL;
+    RETURN rec_livre;
 
     -- Gestion des autres erreurs
     WHEN OTHERS THEN
         -- On informe l'utilisateur quil y a eu une erreur
         DBMS_OUTPUT.PUT_LINE('Une erreur sest produite veuillez reesayer.');
-    RETURN NULL;
+    RETURN rec_livre;
 
 END rechercher_livre_fct;
 
 -- Fonction F. archiver_prc
 
-PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100); chaine_sql VARCHAR2(500); mois_format VARCHAR2(2);
+PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois  IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100); chaine_sql VARCHAR2(500); mois_format VARCHAR2(2);
 
 BEGIN
     -- Si le mois est plus petit que 10 ajoute un 0 devant

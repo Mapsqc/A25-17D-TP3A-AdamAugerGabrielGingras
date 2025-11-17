@@ -1,5 +1,3 @@
-SET SERVEROUTPUT ON
-
 DECLARE
     TYPE t_objets IS TABLE OF VARCHAR2(100);
     table_a_supp t_objets := t_objets(

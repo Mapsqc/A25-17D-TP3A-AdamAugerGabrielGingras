@@ -13,8 +13,8 @@ CREATE OR REPLACE PACKAGE GESTION_EMPRUNTS_PKG IS
         nom_genre bo.genres.nom_genre%TYPE
     );
 
-    g_annee_courante VARCHAR2(4) := '2020';
-    g_mois_courant VARCHAR2(2) := '12';
+    g_annee_courante NUMBER := 2020;
+    g_mois_courant NUMBER := 12;
 
     e_livre_indisponible EXCEPTION;
     e_penalites_impayees EXCEPTION;
