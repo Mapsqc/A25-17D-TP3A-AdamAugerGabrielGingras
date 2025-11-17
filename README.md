@@ -2,10 +2,17 @@
 
 # PROJET DE GESTION DES EMPRUNTS CHEZ BIBLIORG
 ## DESCRIPTION
-Saisir une description du projet
+Consiste a creer un package en GESTION_EMPRUNTS_PKG en PLSQL pour gerer les emprunts de livres dans uen bibliotheque. Le projet inclut egalement des tests afin de tester le fonctionnement des procedures et fonctions.
 
 ## STRUCTURE DU PROJET
-Décrire la structure du dossier
+Il y a plusieurs fichiers, 
+- users.sql pour les users,
+- drop.sql pour drop la bd,
+- objects.sql pour les tables,
+- data.sql pour remplir la bd (fournit par le prof),
+- pks
+- pkb
+- tests
 
 ## ÉQUIPE
 Lettre d’équipe : Z
@@ -32,7 +39,11 @@ Lettre d’équipe : Z
 - Compléter les tests fonctionnels en lien avec les fonctions / procédures (idéalement celles de votre collègue pour faire un genre de code review et voir d’autres exemples). Voir BO_50_tests_fonctionnels_tp3a.sql 
 - Création des SPECS et BODY d’un package renfermant ces fonctions / procédures uniquement (fichier séparé)
 
+## Commentaires
+Les commit avec dans le titre 'adam' est le code de Adam. Il n'a pas reussi a push.
+
 ## INSTRUCTIONS
-    1. Cloner le dépôt :
+1. Cloner le dépôt :
 Faire un git clone <https://github.com/Mapsqc/A25-17D-TP3A-AdamAugerGabrielGingras.git>
-    2. Lancer les scripts 1 par 1
+
+2. Lancer les scripts 1 par 1
