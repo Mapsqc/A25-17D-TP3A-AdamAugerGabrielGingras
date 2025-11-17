@@ -1,6 +1,16 @@
 CREATE OR REPLACE PACKAGE BODY GESTION_EMPRUNTS_PKG IS 
 
- -- Calculer les pénalitées
+---------------------------------------------------------------------------------------------
+-- Fonction : calculer_penalite_membre_fct
+--
+-- BUT : Calculer le montant des penalites d'un membre
+--
+-- PARAMÈTRES :
+-- p_id_membre (number) : Identifiant du membre
+--
+-- RETOUR (number) :
+-- Montant des penalites
+---------------------------------------------------------------------------------------------
 FUNCTION calculer_penalite_membre_fct(p_id_membre IN NUMBER) RETURN NUMBER IS
     v_total NUMBER := 0;
 BEGIN
@@ -14,7 +24,18 @@ BEGIN
 END calculer_penalite_membre_fct;
 
 
--- Vérifier si le membre a une pénalité
+---------------------------------------------------------------------------------------------
+-- Fonction : est_penalites_impayees_fct
+--
+-- BUT : Vérifier si un membre a des penalites impayees
+--
+-- PARAMÈTRES :
+-- i_id_membre (number) : Identifiant du membre
+-- o_montant_penalites (number OUT) : Montant des penalites
+--
+-- RETOUR (boolean) :
+-- TRUE si le membre a des penalites impayees, sinon retourne FALSE
+---------------------------------------------------------------------------------------------
 FUNCTION est_penalites_impayees_fct(i_id_membre IN NUMBER,o_montant_penalites OUT NUMBER ) RETURN BOOLEAN IS
     v_total NUMBER;
 BEGIN
@@ -28,7 +49,18 @@ BEGIN
     END IF;
 END est_penalites_impayees_fct;
 
-
+---------------------------------------------------------------------------------------------
+-- Procedure : emprunter_livre_prc
+--
+-- BUT : Permettre à un membre d'emprunter un livre
+--
+-- PARAMÈTRES :
+-- i_id_membre (number) : Identifiant du membre
+-- i_id_livre (number) : Identifiant du livre
+--
+-- EXCEPTIONS :
+-- OTHERS : Gerer les erreurs inattendues
+---------------------------------------------------------------------------------------------
 PROCEDURE emprunter_livre_prc( i_id_membre IN NUMBER, i_id_livre IN NUMBER ) IS
     v_penalites NUMBER;
     v_disponible BOOLEAN;
@@ -66,6 +98,22 @@ PROCEDURE emprunter_livre_prc( i_id_membre IN NUMBER, i_id_livre IN NUMBER ) IS
     DBMS_OUTPUT.PUT_LINE('Erreur dans emprunter_livre_prc: ' || SQLERRM);
 END emprunter_livre_prc;
 
+
+---------------------------------------------------------------------------------------------
+-- Fonction : est_disponible_fct
+--
+-- BUT : Verifier si un livre est disponible
+--
+-- PARAMÈTRES :
+-- i_id_livre (number) : Identifiant du livre\
+-- o_date_retour_prevue (date OUT) : Date de retour prévue
+--
+-- RETOUR (boolean) :
+-- TRUE si le livre est disponible, sinon retourne FALSE
+-- 
+-- EXCEPTIONS :
+-- OTHERS : Gerer les erreurs inattendues
+---------------------------------------------------------------------------------------------
 FUNCTION est_disponible_fct( i_id_livre IN NUMBER, o_date_retour_prevue OUT DATE ) RETURN BOOLEAN IS
     v_emprunt_existant NUMBER;
     BEGIN
@@ -88,7 +136,20 @@ EXCEPTION
         RAISE;
 END est_disponible_fct;
 
--- Procédure D. retourner_livre_prc
+
+
+---------------------------------------------------------------------------------------------
+-- Procedure : retourner_livre_prc
+--
+-- BUT : Permettre à un membre de retourner un livre
+--
+-- PARAMÈTRES :
+-- i_id_livre (number) : Identifiant du livre\
+-- i_id_membre (number) : Identifiant du membre
+-- 
+-- EXCEPTIONS :
+-- OTHERS : Gerer les erreurs inattendues
+---------------------------------------------------------------------------------------------
 PROCEDURE retourner_livre_prc (i_id_membre IN NUMBER, i_id_livre IN NUMBER) IS penalite NUMBER:= 0; v_bool BOOLEAN;
 BEGIN
     -- Verifier sil y a des penalites non paye
@@ -114,8 +175,23 @@ EXCEPTION
 
 END retourner_livre_prc;
 
--- Fonction E. rechercher_livre_fct
 
+
+---------------------------------------------------------------------------------------------
+-- Fonction : rechercher_livre_fct
+--
+-- BUT : Rechercher un livre par son id
+--
+-- PARAMÈTRES :
+-- io_id_livre (number IN OUT) : Id du livre
+-- 
+-- RETOUR (T_INFO_LIVRE) :
+-- Enregistrement contenant les informations du livre
+--
+-- EXCEPTIONS :
+-- OTHERS : Gerer les erreurs inattendues
+-- NO_DATA_FOUND : Gerer le cas ou aucun livre n'est trouve
+---------------------------------------------------------------------------------------------
 FUNCTION rechercher_livre_fct(io_id_livre IN OUT NUMBER) RETURN T_INFO_LIVRE IS rec_livre T_INFO_LIVRE;
 BEGIN
     -- Recherche le livre avec l'id specifie
@@ -146,8 +222,20 @@ EXCEPTION
 
 END rechercher_livre_fct;
 
--- Fonction F. archiver_prc
 
+
+---------------------------------------------------------------------------------------------
+-- Procedure : archiver_prc
+--
+-- BUT : Archiver les emprunts d'une periode donnee
+--
+-- PARAMÈTRES :
+-- i_annee (number) : Annee des emprunts a archiver
+-- i_mois (number) : Mois des emprunts a archiver
+--
+-- EXCEPTIONS :
+-- OTHERS : Gerer les erreurs inattendues
+---------------------------------------------------------------------------------------------
 PROCEDURE archiver_prc(i_annee IN NUMBER DEFAULT 2020, i_mois  IN NUMBER DEFAULT 12) IS nom_nouvelle_table VARCHAR2(100); chaine_sql VARCHAR2(500); mois_format VARCHAR2(2);
 
 BEGIN
