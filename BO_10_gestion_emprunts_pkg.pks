@@ -13,6 +13,20 @@ CREATE OR REPLACE PACKAGE GESTION_EMPRUNTS_PKG IS
         nom_genre bo.genres.nom_genre%TYPE
     );
 
+    g_annee_courante VARCHAR2(4) := '2020';
+    g_mois_courant VARCHAR2(2) := '12';
+
+    e_livre_indisponible EXCEPTION;
+    e_penalites_impayees EXCEPTION;
+
+    FUNCTION calculer_penalite_membre_fct(p_id_membre IN NUMBER) RETURN NUMBER;
+
+    FUNCTION est_penalites_impayees_fct(i_id_membre IN NUMBER,o_montant_penalites OUT NUMBER) RETURN BOOLEAN;
+
+    PROCEDURE emprunter_livre_prc(i_id_membre IN NUMBER,i_id_livre IN NUMBER);
+
+    FUNCTION est_disponible_fct(i_id_livre IN NUMBER,o_date_retour_prevue OUT DATE) RETURN BOOLEAN;
+
     -- Procédure D. retourner_livre_prc
     PROCEDURE retourner_livre_prc (i_id_membre IN NUMBER, i_id_livre IN NUMBER);
 
