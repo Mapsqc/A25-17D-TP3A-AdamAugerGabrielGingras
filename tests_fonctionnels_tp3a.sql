@@ -143,6 +143,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 1 : RETOUR SANS AMENDES À PAYER');
     ID_MEMBRE := 6; -- Membre 6 : Aucune amende à payer
     ID_LIVRE := 18; -- Livre 18 : Livre à retourner
+    BO.gestion_emprunts_pkg.retourner_livre_prc(ID_MEMBRE, ID_LIVRE);
 
     ROLLBACK; -- Pour annuler les modifications de la transaction (retrouver les données d'origine)
 
@@ -151,6 +152,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 2 : RETOUR AVEC AMENDES À PAYER');
     ID_MEMBRE := 4; -- Membre 4 : Amendes à payer
     ID_LIVRE := 4; -- Livre 4 : Livre à retourner
+    BO.gestion_emprunts_pkg.retourner_livre_prc(ID_MEMBRE, ID_LIVRE);
 
     rollback;
 END;
@@ -181,17 +183,39 @@ END;
 
 
 --F.  TEST FONCTIONNEL POUR archiver_prc
+
+-- Ne fonctionne pas, je crois que la table n'est jamais creer mais je n'ai pas trouve pourquoi.
 DECLARE
     VERIF VARCHAR2(1000);
+    nb_enregistrements NUMBER;
 BEGIN
  
     -- Création EMPRUNTS_ARCHIVE_202012 (valeurs par défaut)
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 1 : Création de la table EMPRUNTS_ARCHIVE_202012 (valeurs par défaut)');
+    BO.gestion_emprunts_pkg.archiver_prc();
 
+    -- Validation
+    SELECT COUNT(*)
+    INTO nb_enregistrements
+    FROM bo.emprunts_archive_202012;
+
+
+    VERIF := 'Table bo.emprunts_archive_202012 créée avec ' || nb_enregistrements || ' enregistrements.';
+    DBMS_OUTPUT.PUT_LINE(VERIF);
     
  
     -- Création EMPRUNTS_ARCHIVE_202104
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 2 : Création de la table EMPRUNTS_ARCHIVE_202104 (Avril 2024)');
+    BO.gestion_emprunts_pkg.archiver_prc(2021, 4);
+
+    -- Validation
+    SELECT COUNT(*)
+    INTO nb_enregistrements
+    FROM bo.emprunts_archive_202104;
+
+
+    VERIF := 'Table bo.emprunts_archive_202104 créée avec ' || nb_enregistrements || ' enregistrements.';
+    DBMS_OUTPUT.PUT_LINE(VERIF);
 
 
 

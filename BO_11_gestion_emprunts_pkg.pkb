@@ -156,11 +156,11 @@ BEGIN
         mois_format := '0' || i_mois;
     -- Sinon on garde le mois
     ELSE
-        mois_format := i_mois;
+        mois_format := TO_CHAR(i_mois);
     END IF;
 
     -- Nom bo.emprunts_archive_AAAAMM
-    nom_nouvelle_table := 'bo.emprunts_archive_' || i_annee || mois_format;
+    nom_nouvelle_table := 'emprunts_archive_' || i_annee || mois_format;
 
     -- Requete chaine_sql
     chaine_sql := 'CREATE TABLE ' || nom_nouvelle_table || ' AS SELECT * FROM bo.emprunts WHERE EXTRACT(YEAR FROM date_emprunt) = ' || i_annee || ' AND EXTRACT(MONTH FROM date_emprunt) = ' || i_mois;
@@ -169,8 +169,10 @@ BEGIN
 
 EXCEPTION
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Une erreur sest produite veuillez reesayer.');
+        DBMS_OUTPUT.PUT_LINE('Une erreur sest produite veuillez reesayer.' || SQLERRM);
+        RAISE;
 
 END archiver_prc;
 
 END GESTION_EMPRUNTS_PKG;
+/
