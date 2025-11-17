@@ -5,27 +5,55 @@ set serveroutput on;
 -- A. TEST FONCTIONNEL POUR est_penalites_impayees_fct
 DECLARE
     ID_MEMBRE NUMBER;
+    v_amende NUMBER;
+    v_a_penalites BOOLEAN;
 BEGIN
  
     -- LIVRES TOUS RETOURNÉS, SANS AMENDE À PAYER
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 1 : LIVRES TOUS RETOURNÉS, SANS AMENDE À PAYER');
     ID_MEMBRE := 7; -- Membre 7 : Aucune amende à payer
+    v_a_penalites := BO.gestion_emprunts_pkg.est_penalites_impayees_fct(ID_MEMBRE, v_amende);
+    IF v_a_penalites THEN
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    END IF;
 
 
     -- LIVRES TOUS RETOURNÉS, MAIS AVEC AMENDE À PAYER
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 2 : LIVRES TOUS RETOURNÉS, MAIS AVEC AMENDE À PAYER');
+    ID_MEMBRE := 2;
+    v_a_penalites := BO.gestion_emprunts_pkg.est_penalites_impayees_fct(ID_MEMBRE, v_amende);
+    IF v_a_penalites THEN
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    END IF;
 
     -- AFFICHER LES AMENDES TOTALES À PAYER POUR LE MEMBRE. Un paramètre de sortie doit avoir été prévu à cette fin. 
 
     -- LIVRE PAS TOUS RETOURNÉS, AVEC AMENDE À PAYER
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 3 : LIVRE PAS TOUS RETOURNÉS, AVEC AMENDE À PAYER');
+    ID_MEMBRE := 3;
+    v_a_penalites := BO.gestion_emprunts_pkg.est_penalites_impayees_fct(ID_MEMBRE, v_amende);
+    IF v_a_penalites THEN
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    END IF;
     
     -- AFFICHER LES AMENDES TOTALES À PAYER POUR LE MEMBRE. Un paramètre de sortie doit avoir été prévu à cette fin.
  
 
     -- LIVRE PAS TOUS RETOURNÉS, MAIS SANS AMENDE À PAYER
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 4 : LIVRE PAS TOUS RETOURNÉS, MAIS SANS AMENDE À PAYER');
-
+    ID_MEMBRE := 6;
+    v_a_penalites := BO.gestion_emprunts_pkg.est_penalites_impayees_fct(ID_MEMBRE, v_amende);
+    IF v_a_penalites THEN
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Membre ' || ID_MEMBRE || ' a un total de : ' || v_amende || ' a payer');
+    END IF;
 
 END;
 /
@@ -39,26 +67,35 @@ BEGIN
  
     -- EMPRUNT IMPOSSIBLE, CAR AMENDES
     DBMS_OUTPUT.PUT_LINE ('*** CAS DE TEST no. 1 : EMPRUNT IMPOSSIBLE, CAR AMENDES');
+    ID_MEMBRE := 2;
+    ID_LIVRE := 1;
+    BO.gestion_emprunts_pkg.emprunter_livre_prc(ID_MEMBRE, ID_LIVRE);
 
 
     ROLLBACK; -- Pour annuler les modifications de la transaction (retrouver les données d'origine)
  
     -- LIVRE INEXISTANT
     DBMS_OUTPUT.PUT_LINE ('*** CAS DE TEST no. 2 : LIVRE INEXISTANT');
+    ID_MEMBRE := 7;
+    ID_LIVRE := 999;
+    BO.gestion_emprunts_pkg.emprunter_livre_prc(ID_MEMBRE, ID_LIVRE);
 
 
     ROLLBACK;
  
     -- LIVRE EXISTANT, MAIS DÉJÀ EMPRUNTÉ
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 3 : LIVRE EXISTANT, MAIS DÉJÀ EMPRUNTÉ');
-
+    ID_MEMBRE := 7;
+    ID_LIVRE := 7;
+    BO.gestion_emprunts_pkg.emprunter_livre_prc(ID_MEMBRE, ID_LIVRE);
 
     ROLLBACK;
  
     -- CAS DE TEST no. 4 : ON PEUT EMPRUNTER LE LIVRE
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 4 : ON PEUT EMPRUNTER LE LIVRE');
-
-
+    ID_MEMBRE := 7;
+    ID_LIVRE := 1;
+    BO.gestion_emprunts_pkg.emprunter_livre_prc(ID_MEMBRE, ID_LIVRE);
 
     ROLLBACK;
 END;
@@ -68,17 +105,28 @@ END;
 DECLARE
     ID_LIVRE     NUMBER;
     RETOUR_PREVU DATE;
+    v_disponible BOOLEAN;
 BEGIN
  
     -- LIVRE DISPONIBLE POUR EMPRUNT
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 1 : LIVRE DISPONIBLE POUR EMPRUNT');
-
-
- 
+    ID_LIVRE := 1;
+    v_disponible := BO.gestion_emprunts_pkg.est_disponible_fct(ID_LIVRE, RETOUR_PREVU);
+    IF v_disponible THEN
+        DBMS_OUTPUT.PUT_LINE('Livre ' || ID_LIVRE || ' est disponible.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Livre ' || ID_LIVRE || ' n''est pas disponible.');
+    END IF;
 
     -- LIVRE DÉJÀ EMPRUNTÉ
     DBMS_OUTPUT.PUT_LINE('*** CAS DE TEST no. 2 : LIVRE DÉJÀ EMPRUNTÉ');
-
+    ID_LIVRE := 7;
+    v_disponible := BO.gestion_emprunts_pkg.est_disponible_fct(ID_LIVRE, RETOUR_PREVU);
+    IF v_disponible THEN
+        DBMS_OUTPUT.PUT_LINE('Livre ' || ID_LIVRE || ' est disponible.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Livre ' || ID_LIVRE || ' n''est pas disponible. Date de retour prévue : ' || TO_CHAR(RETOUR_PREVU, 'DD/MM/YYYY'));
+    END IF;
 
 END;
 /
